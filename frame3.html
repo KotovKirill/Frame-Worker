@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Frame3</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+</head>
+<body>
+<p id="links">ссылки</p>
+
+<iframe id="frame" style="visibility: hidden;" hidden></iframe>
+
+<script>
+    $(window).on("message", function(e) {
+        var data = e.originalEvent.data;
+        var iframe = document.getElementById("frame");
+        iframe.setAttribute('src', data);
+        iframe.onload = function() {
+            var links = iframe.contentWindow.document.getElementsByTagName('a');
+            for(var i = 0; i< links.length; i++)
+                $("#links").append("<p>"+links[i].href+"</p>");
+                //alert(links[i].href);
+        };
+    });
+
+</script>
+</body>
+</html>

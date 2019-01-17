@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Menu</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+</head>
+<body>
+
+<FORM name="aa">
+    <input type="text" id="get_txt"	 /><br>
+    <br><button name="next" id="buttonForward">Forward</button><br><br>
+    <br><button name="save" id="buttonSave">Get Links</button>
+    <br><p>For only local links<br>
+    use: chrome.exe --user-data-dir="google chrome app data" --disable-web-security</p>
+    <!--chrome.exe --user-data-dir="C:\Users\Kirill\AppData\Local\Google\Chrome\User Data\Default" --disable-web-security-->
+</FORM>
+
+<script>
+    $("#buttonForward").click(function () {
+       var data = $("#get_txt").val();
+       window.parent.postMessage({"button":"forward", "val" : data}, '*');
+    });
+    $("#buttonSave").click(function () {
+        var data = $("#get_txt").val();
+        window.parent.postMessage({"button":"save", "val" : data}, '*');
+    });
+</script>
+</body>
+</html>

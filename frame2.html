@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Frame2</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+</head>
+<body>
+<p id="siteName">Site Name</p>
+<div id="dataStore">
+    <!--<object type="text/html" width="800px" height="600px" style="overflow:auto;border:5px ridge blue"></object>-->
+</div>
+
+<script>
+    $(window).on("message", function(e) {
+        var data = e.originalEvent.data;
+        $("#siteName").text(data);
+        $("#dataStore").html('<object data="'+data+'" width="800px" height="600px" />');
+    });
+</script>
+</body>
+</html>

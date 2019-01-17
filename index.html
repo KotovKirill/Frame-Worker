@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Frame Worker</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        .row {
+            display: flex;
+        }
+
+        .column {
+            flex: 20%;
+            padding: 10px;
+            height: 300px;
+        }
+
+        .column1 {
+            padding: 10px;
+            height: 300px;
+            width: 20%;
+        }
+    </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+</head>
+<body>
+<div class="row">
+    <div class="column1">
+        <iframe src="menu.html" frameborder="0" height="500"></iframe>
+    </div>
+    <div class="column">
+        <div>
+            <iframe src="frame3.html" frameborder="0" id="frame3" width="800" height="300"></iframe>
+        </div>
+        <div>
+            <iframe src="frame2.html" frameborder="0" width="800" height="600" id="frame2"></iframe>
+        </div>
+    </div>
+</div>
+
+
+<script>
+    $(window).on("message", function(e) {
+        let data = e.originalEvent.data;
+        if(data.button === 'forward')
+            document.getElementById("frame2").contentWindow.postMessage(data.val, '*');
+        else if(data.button === 'save')
+            document.getElementById("frame3").contentWindow.postMessage(data.val, '*');
+    });
+
+</script>
+
+</body>
+</html>
